@@ -229,11 +229,11 @@ class Package(object):
                 site_packages = 'lib\\site-packages'
 
             utils.copy_tree(os.path.join(self._pkg_venv, site_packages),
-                            package)
+                            package, ignore=ignore)
             lib64_path = os.path.join(self._pkg_venv, lib64_site_packages)
             if not os.path.islink(lib64_path):
                 LOG.info('Copying lib64 site packages')
-                utils.copy_tree(lib64_path, package)
+                utils.copy_tree(lib64_path, package, ignore=ignore)
 
         # Append the temp workspace to the ignore list:
         ignore += ["^%s/*" % TEMP_WORKSPACE_NAME]
